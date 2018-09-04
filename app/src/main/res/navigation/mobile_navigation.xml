@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/loginActivity">
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="co.appmigo.group.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="co.appmigo.group.module.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="co.appmigo.group.module.maps.fragment.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/itemAlert"
+        android:name="co.appmigo.group.module.explore.fragment.ItemAlert"
+        android:label="fragment_alert_list"
+        tools:layout="@layout/fragment_alert_list" >
+        <action
+            android:id="@+id/action_itemAlert_to_detailsAlertFragment"
+            app:destination="@id/detailsAlertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsAlertFragment"
+        android:name="co.appmigo.group.DetailsAlertFragment"
+        android:label="fragment_details_alert"
+        tools:layout="@layout/fragment_details_alert" />
+</navigation>

@@ -1,0 +1,164 @@
+{
+  "project_info": {
+    "project_number": "932881345159",
+    "firebase_url": "https://geoalert-4888b.firebaseio.com",
+    "project_id": "geoalert-4888b",
+    "storage_bucket": "geoalert-4888b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932881345159:android:595e411f6367edc3",
+        "android_client_info": {
+          "package_name": "co.appmigo.group"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932881345159-eme1pb9i6lrcbccck1ia2nksqo1u9rij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.appmigo.group",
+            "certificate_hash": "debf6a6ea817e18b318e5832095351786eb8158d"
+          }
+        },
+        {
+          "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfDBtqz11pO7_OB5POva9Wuv2V6T0RAT4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "932881345159-cqt0hh6qta3v5p6kpdih4jvku9hsrq33.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.Geo"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932881345159:android:123082f98517e10e",
+        "android_client_info": {
+          "package_name": "co.appmigo.julianperez.appmigo.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932881345159-479vmektvh75bhn7u5juae9caa3lriik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.appmigo.julianperez.appmigo.app",
+            "certificate_hash": "debf6a6ea817e18b318e5832095351786eb8158d"
+          }
+        },
+        {
+          "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfDBtqz11pO7_OB5POva9Wuv2V6T0RAT4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "932881345159-cqt0hh6qta3v5p6kpdih4jvku9hsrq33.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.Geo"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932881345159:android:b848ccc057a35a28",
+        "android_client_info": {
+          "package_name": "org.nativescript.Geo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932881345159-mknjlf8o4865pbm3147huvehck7p5j29.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.nativescript.Geo",
+            "certificate_hash": "2529d74eda2d7c3151e3fe691b72d2a461b4b960"
+          }
+        },
+        {
+          "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfDBtqz11pO7_OB5POva9Wuv2V6T0RAT4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932881345159-uu0m4tuqokjmgqvu70qslshcns7sq4p5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "932881345159-cqt0hh6qta3v5p6kpdih4jvku9hsrq33.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.Geo"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
