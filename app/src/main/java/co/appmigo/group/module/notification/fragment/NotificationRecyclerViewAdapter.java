@@ -1,4 +1,4 @@
-package co.appmigo.group.module.explore.fragment;
+package co.appmigo.group.module.notification.fragment;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import co.appmigo.group.R;
-import co.appmigo.group.module.explore.fragment.ExploreAlertFragment.OnListFragmentInteractionListener;
-import co.appmigo.group.module.explore.fragment.dummy.DummyContent.DummyItem;
+import co.appmigo.group.module.notification.fragment.NotificationFragment.OnListFragmentInteractionListener;
+import co.appmigo.group.module.notification.fragment.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class AlertRecyclerViewAdapter extends RecyclerView.Adapter<AlertRecyclerViewAdapter.ViewHolder> {
+public class NotificationRecyclerViewAdapter extends RecyclerView.Adapter<NotificationRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public AlertRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public NotificationRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,7 +31,7 @@ public class AlertRecyclerViewAdapter extends RecyclerView.Adapter<AlertRecycler
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_alert, parent, false);
+                .inflate(R.layout.fragment_notification, parent, false);
         return new ViewHolder(view);
     }
 

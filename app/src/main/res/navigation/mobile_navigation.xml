@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/itemAlert"
-        android:name="co.appmigo.group.module.explore.fragment.ItemAlert"
+        android:name="co.appmigo.group.module.explore.fragment.ExploreAlertFragment"
         android:label="fragment_alert_list"
         tools:layout="@layout/fragment_alert_list" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsAlertFragment"
-        android:name="co.appmigo.group.DetailsAlertFragment"
+        android:name="co.appmigo.group.module.explore.fragment.DetailsAlertFragment"
         android:label="fragment_details_alert"
         tools:layout="@layout/fragment_details_alert" />
 </navigation>

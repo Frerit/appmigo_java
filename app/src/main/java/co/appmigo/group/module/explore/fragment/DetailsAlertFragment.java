@@ -1,10 +1,11 @@
-package co.appmigo.group;
+package co.appmigo.group.module.explore.fragment;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import co.appmigo.group.R;
 
 import android.view.LayoutInflater;
 import android.view.View;

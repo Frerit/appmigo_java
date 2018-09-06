@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="co.appmigo.group.module.explore.fragment.ItemAlert"
+    android:name="co.appmigo.group.module.notification.fragment.NotificationFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".module.explore.fragment.ExploreAlertFragment"
-    tools:listitem="@layout/fragment_alert" />
+    tools:context=".module.notification.fragment.NotificationFragment"
+    tools:listitem="@layout/fragment_notification" />

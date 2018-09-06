@@ -4,8 +4,6 @@ import android.net.Uri;
 
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
-
 public class User {
 
     String uId;
@@ -18,8 +16,8 @@ public class User {
     String providerId;
     Boolean isAutenticate;
     Boolean isFirstLogin;
-    Location location;
-    Location lastLocation;
+    Localization location;
+    Localization lastLocation;
 
     public User() {
     }
@@ -117,19 +115,19 @@ public class User {
         isFirstLogin = firstLogin;
     }
 
-    public Location getLocation() {
+    public Localization getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Localization location) {
         this.location = location;
     }
 
-    public Location getLastLocation() {
+    public Localization getLastLocation() {
         return lastLocation;
     }
 
-    public void setLastLocation(Location lastLocation) {
+    public void setLastLocation(Localization lastLocation) {
         this.lastLocation = lastLocation;
     }
 }

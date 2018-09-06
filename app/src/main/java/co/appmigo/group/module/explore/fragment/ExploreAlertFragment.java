@@ -13,10 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import co.appmigo.group.R;
+import co.appmigo.group.module.MainActivity;
 import co.appmigo.group.module.explore.fragment.dummy.DummyContent;
 import co.appmigo.group.module.explore.fragment.dummy.DummyContent.DummyItem;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -24,9 +23,9 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ItemAlert extends Fragment {
+public class ExploreAlertFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
+    private MainActivity mainActivity;
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
@@ -36,13 +35,13 @@ public class ItemAlert extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemAlert() {
+    public ExploreAlertFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ItemAlert newInstance(int columnCount) {
-        ItemAlert fragment = new ItemAlert();
+    public static ExploreAlertFragment newInstance(int columnCount) {
+        ExploreAlertFragment fragment = new ExploreAlertFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -81,8 +80,8 @@ public class ItemAlert extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof MainActivity) {
+            mainActivity = (MainActivity) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");

@@ -1,19 +1,36 @@
 package co.appmigo.group.common;
 
-public class Location {
+public class Localization {
 
     private String name;
     private double longitude;
     private double latitude;
 
+
     // (latitude, longitude) specified in degrees
-    public Location(String name, double latitude, double longitude) {
+    public Localization(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude  = latitude;
         this.longitude = longitude;
     }
 
-    public double distanceTo(Location that) {
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double distanceTo(Localization that) {
         double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
         double lat1 = Math.toRadians(this.latitude);
         double lon1 = Math.toRadians(this.longitude);
