@@ -2,14 +2,80 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.maps.fragment.MapsFragment">
+    android:gravity="bottom">
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/select_type_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="bottom|center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="67dp"
+            android:layout_height="70dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null"
+            android:textAlignment="viewStart" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/frame_mapbox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapMain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="2"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="2">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        </com.mapbox.mapboxsdk.maps.MapView>
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

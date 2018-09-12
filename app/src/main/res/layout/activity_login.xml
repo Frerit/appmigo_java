@@ -8,10 +8,15 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="384dp"
+        android:layout_height="567dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/backland3" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backland3"
+        android:contentDescription="@string/todo" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -28,10 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <TableRow
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
@@ -61,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingLeft="20dp">
+                android:paddingStart="20dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmail"
@@ -73,7 +79,7 @@
                         android:id="@+id/tietEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Correo"
+                        android:hint="@string/correo"
                         android:inputType="textEmailAddress"
                         android:textColorHint="#ffffff" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +94,7 @@
                         android:id="@+id/tietPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Contraseña"
+                        android:hint="@string/contrase_a"
                         android:inputType="textPassword"
                         android:textColorHint="#ffffff" />
 
@@ -122,10 +128,10 @@
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:gravity="center|end"
-                        android:text="¡Si no tienes cuenta! Puedes"
+                        android:text="@string/si_no_tienes_cuenta_puedes"
                         android:textColor="#9cffffff" />
 
                     <TextView
@@ -134,17 +140,11 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:gravity="center|start"
-                        android:text="Crea una "
+                        android:text="@string/crea_una"
                         android:textColor="#b5ffffff"
                         android:textStyle="bold" />
 
                 </LinearLayout>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                </TableRow>
 
             </LinearLayout>
 

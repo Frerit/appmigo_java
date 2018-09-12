@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements MapFragment.OnMap
                     .build());
 
             mapFragment = SupportMapFragment.newInstance(options);
-            transaction.add(R.id.contentLayout, mapFragment, "com.mapbox.map");
+            transaction.add(R.id.frame_mapbox, mapFragment, "com.mapbox.map");
             transaction.commit();
         } else {
             mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentByTag("com.mapbox.map");
