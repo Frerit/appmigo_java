@@ -30,12 +30,14 @@ import androidx.fragment.app.Fragment;
 import co.appmigo.group.R;
 import co.appmigo.group.common.Localization;
 import co.appmigo.group.module.MainActivity;
+import co.appmigo.group.module.maps.activity.RegisterIncidentActivity;
 
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -74,6 +76,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     private RadioButton rad1, rad2, rad3;
     private RadioGroup radiogroup;
+    private Button btnIncident;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
@@ -104,7 +107,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
         initViews(view);
         initListener(view);
-
         return view;
     }
 
@@ -113,6 +115,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         rad1 = view.findViewById(R.id.radioButton1);
         rad2 = view.findViewById(R.id.radioButton2);
         rad3 = view.findViewById(R.id.radioButton3);
+        btnIncident = view.findViewById(R.id.btnpublicateIncident);
     }
 
     public void animateElement(Object anima, float posiiton) {
@@ -123,17 +126,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void initListener(View view) {
-
-
-
-        if (rad1.isChecked()) {
-
-        }
-
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
 
                 if (rad1.getId() == i) {
                     animateElement(rad1,-20);
@@ -151,8 +146,14 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     animateElement(rad2,20);
                     animateElement(rad1,20);
                 }
+            }
+        });
 
-
+        btnIncident.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Intent intent = new Intent(getActivity(), RegisterIncidentActivity.class);
+              startActivity(intent);
             }
         });
     }
