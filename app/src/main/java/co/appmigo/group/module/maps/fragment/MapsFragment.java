@@ -93,13 +93,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
-        initViews();
+        initViews(view);
         initListener();
 
         return view;
     }
 
-    private void initViews() {
+    private void initViews(View view) {
 
     }
 
@@ -196,7 +196,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap.setMapType( GoogleMap.MAP_TYPE_NORMAL );
         comenzarLocalizacion();
         final LatLng position = new LatLng(localization.getLatitude(), localization.getLongitude());
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom( position, 18 ) );
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom( position, 17) );
         mMap.getUiSettings().setCompassEnabled( true );
 
     }

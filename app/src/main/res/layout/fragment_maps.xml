@@ -8,19 +8,53 @@
     tools:context=".module.maps.fragment.MapsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fragment
         android:id="@+id/mapView"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:context="com.example.mapwithmarker.MapsMarkerActivity"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintVertical_bias="1.0"
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/mapView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null"
+            android:layout_marginBottom="-2dp"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:button="@null"
+            android:layout_marginBottom="-2dp"/>
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
