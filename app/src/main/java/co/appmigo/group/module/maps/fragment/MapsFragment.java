@@ -1,6 +1,8 @@
 package co.appmigo.group.module.maps.fragment;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -34,6 +36,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -60,11 +65,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     List<Localization> locations;
     LocationManager locationManager;
     Localization localization;
+    boolean checkMap;
 
     Bitmap iconBit;
     private int drawerIcon;
     private int colorStroke;
     private int colorFill;
+
+    private RadioButton rad1, rad2, rad3;
+    private RadioGroup radiogroup;
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
@@ -94,18 +103,62 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
         initViews(view);
-        initListener();
+        initListener(view);
 
         return view;
     }
 
     private void initViews(View view) {
-
+        radiogroup = view.findViewById(R.id.mapsradioGroup);
+        rad1 = view.findViewById(R.id.radioButton1);
+        rad2 = view.findViewById(R.id.radioButton2);
+        rad3 = view.findViewById(R.id.radioButton3);
     }
 
-    private void initListener() {
-
+    public void animateElement(Object anima, float posiiton) {
+       @SuppressLint("ObjectAnimatorBinding")
+       ObjectAnimator animator = ObjectAnimator.ofFloat(anima,"translationY", posiiton);
+       animator.setDuration(35);
+       animator.start();
     }
+
+    public void initListener(View view) {
+
+
+
+        if (rad1.isChecked()) {
+
+        }
+
+        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+
+                if (rad1.getId() == i) {
+                    animateElement(rad1,-20);
+                    animateElement(rad2,20);
+                    animateElement(rad3,20);
+                }
+
+                if (rad2.getId() == i) {
+                    animateElement(rad2,-20);
+                    animateElement(rad1,20);
+                    animateElement(rad3,20);
+                }
+                if (rad3.getId() == i) {
+                    animateElement(rad3,-20);
+                    animateElement(rad2,20);
+                    animateElement(rad1,20);
+                }
+
+
+            }
+        });
+    }
+
+
+
 
     @Override
     public void onAttach(Context context) {

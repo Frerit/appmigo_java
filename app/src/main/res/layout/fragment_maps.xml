@@ -22,9 +22,11 @@
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
     <RadioGroup
+        android:id="@+id/mapsradioGroup"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
+        android:background="@drawable/ic_fondo"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/mapView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +45,7 @@
             android:id="@+id/radioButton2"
             android:layout_width="60dp"
             android:layout_height="50dp"
-            android:layout_marginTop="-10dp"
+            android:layout_marginBottom="-2dp"
             android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
             android:button="@null" />
 
