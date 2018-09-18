@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".module.maps.fragment.IncidentSlider2Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="499dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precaucion:" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_inundation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_huracan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_tifon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_erupcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/type_terremoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    app:sparkbutton_animationSpeed="1"
+                    app:sparkbutton_activeImage="@drawable/common_google_signin_btn_icon_dark_normal_background"
+                    app:sparkbutton_inActiveImage="@drawable/common_google_signin_btn_icon_light_normal_background"
+                    app:sparkbutton_primaryColor="@color/colorPrimary"
+                    app:sparkbutton_secondaryColor="@color/colorAccent" />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -7,9 +7,62 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="ms_stepperStyle">@style/DotStepperStyle</item>
 
     </style>
 
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="ms_stepperStyle">@style/CustomStepperLayoutThemeSample</item>
+        <item name="ms_showErrorState">true</item>
+    </style>
+
+    <style name="DotStepperStyle">
+        <item name="ms_stepperType">dots</item>
+        <item name="ms_activeStepColor">#FFFFFF</item>
+        <item name="ms_inactiveStepColor">#006867</item>
+        <item name="ms_bottomNavigationBackground">?attr/colorAccent</item>
+    </style>
+
+    <style name="CustomStepperLayoutThemeSample">
+        <item name="ms_stepperType">tabs</item>
+        <item name="ms_stepperLayoutTheme">@style/DarkCustomStepperLayoutTheme</item>
+        <item name="ms_activeStepColor">#006867</item>
+        <item name="ms_inactiveStepColor">#62807f</item>
+    </style>
+
+    <style name="DarkCustomStepperLayoutTheme" parent="MSDefaultStepperLayoutTheme">
+        <item name="ms_bottomNavigationStyle">@style/DarkBottomNavigationStyle</item>
+        <item name="ms_tabsContainerStyle">@style/DarkStepTabsContainerStyle</item>
+        <item name="ms_stepTabTitleStyle">@style/DarkStepTabTitleStyle</item>
+        <item name="ms_stepTabSubtitleStyle">@style/DarkStepTabSubtitleStyle</item>
+    </style>
+    <style name="DarkBottomNavigationStyle" parent="MSBottomNavigation">
+        <item name="android:background">@color/darkColorPrimary</item>
+    </style>
+
+    <style name="DarkStepTabsContainerStyle" parent="MSStepTabsContainer">
+        <item name="android:background">@color/darkColorPrimary</item>
+    </style>
+
+    <style name="DarkStepTabTitleStyle" parent="MSStepTabTitle">
+        <item name="android:textColor">@color/ms_white</item>
+    </style>
+
+    <style name="DarkStepTabSubtitleStyle" parent="MSStepTabSubtitle">
+        <item name="android:textColor">@color/ms_white_54_opacity</item>
+    </style>
+    <style name="CustomBottomNavigationStyle" parent="MSBottomNavigation">
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+
+
+    <style name="CenteredCompleteButtonStyle" parent="MSNavBarButton.Complete">
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

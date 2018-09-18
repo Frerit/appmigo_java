@@ -1,12 +1,14 @@
 package co.appmigo.group;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import co.appmigo.group.common.User;
 import co.appmigo.group.common.Util;
 import co.appmigo.group.module.MainActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -158,7 +160,21 @@ public class LoginActivity extends AppCompatActivity {
     // Actualiza el usuario cuando la app inicie
     private void updateUI(FirebaseUser currentUser) {
         Log.d("|Firebase", "User: ");
-        user = new User(currentUser);
+        if (currentUser != null) {
+            user = new User(currentUser);
+        } else {
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle("Upps...");
+               builder.setMessage("No se logro conexion con el servidor Intenta nuevamente");
+               builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       tietEmail.setText("");
+                       tietPassword.setText("");
+                   }
+               });
+             builder.create();
+        }
     }
 
     @Override  // Cierra la app
@@ -202,4 +218,5 @@ public class LoginActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
+
 }

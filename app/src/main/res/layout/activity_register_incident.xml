@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".module.maps.activity.RegisterIncidentActivity">
 
+    <com.stepstone.stepper.StepperLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/stepperLayout"
+        app:ms_showBackButtonOnFirstStep="true"
+        app:ms_stepperType="progress_bar"
+        app:ms_stepperFeedbackType="tabs"
+        app:ms_showErrorStateEnabled="true"
+        app:ms_tabStepDividerWidth="138dp"
+        app:ms_errorColor="@color/colorPrimary"
+        tools:theme="@style/AppTheme"
+        app:ms_bottomNavigationBackground="?attr/colorAccent"
+        tools:ignore="MissingConstraints">
+
+    </com.stepstone.stepper.StepperLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

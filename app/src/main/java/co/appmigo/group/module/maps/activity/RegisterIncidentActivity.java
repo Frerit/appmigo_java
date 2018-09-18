@@ -2,20 +2,25 @@ package co.appmigo.group.module.maps.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import co.appmigo.group.R;
+import co.appmigo.group.common.Warning;
+import co.appmigo.group.module.maps.model.OnProcesdListener;
 import co.appmigo.group.module.maps.presenter.StepperAdapter;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 
-public class RegisterIncidentActivity extends AppCompatActivity implements StepperLayout.StepperListener {
+public class RegisterIncidentActivity extends AppCompatActivity implements StepperLayout.StepperListener, OnProcesdListener {
 
     private StepperLayout stepperLayout;
     private StepperAdapter adapterSteper;
+
+    private Warning registerWarnig;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +29,14 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
         stepperLayout = findViewById(R.id.stepperLayout);
 
         adapterSteper = new StepperAdapter(getSupportFragmentManager(), this);
+        registerWarnig = new Warning();
 
-        stepperLayout.setAdapter(adapterSteper);
+        stepperLayout.setAdapter(adapterSteper,0);
+        stepperLayout.setShowErrorStateEnabled(true);
+        stepperLayout.isTabNavigationEnabled();
+        stepperLayout.setTabNavigationEnabled(true);
         stepperLayout.setListener(this);
+
     }
 
     @Override
@@ -52,5 +62,19 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public void onProceed() {
+        stepperLayout.proceed();
+    }
+
+    @Override
+    public Warning getRegisterWarnig() {
+        return registerWarnig;
+    }
+
+    public void setRegisterWarnig(Warning registerWarnig) {
+        this.registerWarnig = registerWarnig;
     }
 }

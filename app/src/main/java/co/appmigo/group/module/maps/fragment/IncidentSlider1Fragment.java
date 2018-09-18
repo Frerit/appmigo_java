@@ -1,6 +1,5 @@
 package co.appmigo.group.module.maps.fragment;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,29 +12,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.stepstone.stepper.BlockingStep;
-import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import co.appmigo.group.R;
 import co.appmigo.group.module.maps.activity.RegisterIncidentActivity;
+import co.appmigo.group.module.maps.model.OnProcesdListener;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import static co.appmigo.group.common.Constants.TAG_;
+
+
 public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
 
     RegisterIncidentActivity registerIncidentActivity;
     private boolean selectionAlert;
-    private Button btnPrecaucion;
-    private Button btnAdvertence;
+    private SparkButton btnPrecaucion;
+    private SparkButton btnAdvertence;
+
     public IncidentSlider1Fragment() {
-        // Required empty public constructor
     }
 
+    private OnProcesdListener onProcesdListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
         return v;
     }
 
+
     private void initView(View view) {
         btnPrecaucion = view.findViewById(R.id.incidentPrecaution);
         btnAdvertence = view.findViewById(R.id.incidentAdvertenca);
@@ -59,21 +62,59 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
 
     private void initListener() {
 
-        btnPrecaucion.setOnClickListener(new View.OnClickListener() {
+
+        btnPrecaucion.setEventListener(new SparkEventListener() {
             @Override
-            public void onClick(View view) {
-                Log.e("|||", "Clic Preca");
-                selectionAlert = true;
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert = true;
+                            onProcesdListener.onProceed();
+                        }
+                    }, 1000L);
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+                btnAdvertence.setChecked(false);
             }
         });
 
-        btnAdvertence.setOnClickListener(new View.OnClickListener() {
+        btnAdvertence.setEventListener(new SparkEventListener() {
             @Override
-            public void onClick(View view) {
-                Log.e("|||", "Clic Adver");
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert = true;
+                            onProcesdListener.onProceed();
+                        }
+                    }, 1000L);
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+                btnPrecaucion.setChecked(false);
             }
         });
+
     }
+
 
     @Override
     public VerificationError verifyStep() {
@@ -93,12 +134,11 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
         if (selectionAlert) {
-            Log.e("|||", "Lllega Aui");
+            Log.e(TAG_, "Lllega Aui");
             callback.goToNextStep();
         } else{
-            Log.e("|||", "Lllega Aui else" );
+            Log.e(TAG_, "No ha habilitado Opcion" );
         }
-
     }
 
     @Override
@@ -107,16 +147,15 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
             @Override
             public void run() {
                 callback.complete();
-                Log.d("APP_LOG","call finish");
+                Log.d(TAG_,"call finish");
             }
         }, 2000L);
-
     }
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         callback.goToPrevStep();
-        Log.d("APP_LOG"," onBackClicked");
+        Log.d(TAG_," onBackClicked");
 
     }
 
@@ -128,5 +167,10 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof OnProcesdListener) {
+            onProcesdListener = (OnProcesdListener) context;
+        } else {
+            throw new IllegalStateException("Ilegal Excepio");
+        }
     }
 }
