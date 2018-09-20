@@ -26,7 +26,14 @@ import com.varunest.sparkbutton.SparkEventListener;
 import co.appmigo.group.R;
 import co.appmigo.group.module.maps.model.OnProcesdListener;
 
+import static co.appmigo.group.common.Constants.CATEGORY_ERUPCION;
+import static co.appmigo.group.common.Constants.CATEGORY_FIRE;
+import static co.appmigo.group.common.Constants.CATEGORY_HURACAN;
+import static co.appmigo.group.common.Constants.CATEGORY_INUNDATION;
+import static co.appmigo.group.common.Constants.CATEGORY_TERREMOTO;
+import static co.appmigo.group.common.Constants.CATEGORY_TIFON;
 import static co.appmigo.group.common.Constants.TAG_;
+import static co.appmigo.group.common.Constants.TYPE_PRECAUTION;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,8 +76,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tFire.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                selectionAlert= true;
-                onProcesdListener.onProceed();
+                    if (buttonState) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                selectionAlert= true;
+                                onProcesdListener.onProceed();
+                                onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_FIRE);
+                            }
+                        }, 400L);
+                    }
             }
 
             @Override
@@ -86,8 +101,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tInundaiton.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                selectionAlert= true;
-                onProcesdListener.onProceed();
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert= true;
+                            onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_INUNDATION);
+                        }
+                    }, 400L);
+                }
             }
 
             @Override
@@ -103,8 +126,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tHuracan.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                selectionAlert= true;
-                onProcesdListener.onProceed();
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert= true;
+                            onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_HURACAN);
+                        }
+                    }, 400L);
+                }
             }
 
             @Override
@@ -120,8 +151,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tTifon.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                selectionAlert= true;
-                onProcesdListener.onProceed();
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert= true;
+                            onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_TIFON);
+                        }
+                    }, 400L);
+                }
             }
 
             @Override
@@ -137,7 +176,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tErupcion.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                onProcesdListener.onProceed();
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert= true;
+                            onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_ERUPCION);
+                        }
+                    }, 400L);
+                }
             }
 
             @Override
@@ -153,7 +201,16 @@ public class IncidentSlider2Fragment extends Fragment implements BlockingStep {
         tTerremoto.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                onProcesdListener.onProceed();
+                if (buttonState) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            selectionAlert= true;
+                            onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setCategory(CATEGORY_TERREMOTO);
+                        }
+                    }, 400L);
+                }
             }
 
             @Override

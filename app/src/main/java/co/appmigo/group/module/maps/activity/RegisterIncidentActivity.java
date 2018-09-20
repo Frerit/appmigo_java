@@ -1,16 +1,24 @@
 package co.appmigo.group.module.maps.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import co.appmigo.group.R;
 import co.appmigo.group.common.Warning;
 import co.appmigo.group.module.maps.model.OnProcesdListener;
 import co.appmigo.group.module.maps.presenter.StepperAdapter;
 
+import androidx.fragment.app.Fragment;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+
+import static co.appmigo.group.common.Constants.TAG_;
 
 
 public class RegisterIncidentActivity extends AppCompatActivity implements StepperLayout.StepperListener, OnProcesdListener {
@@ -19,7 +27,7 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
     private StepperAdapter adapterSteper;
 
     private Warning registerWarnig;
-
+    protected Fragment lastFragmentOpen;
 
 
     @Override
@@ -41,7 +49,10 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
 
     @Override
     public void onCompleted(View completeButton) {
-        Toast.makeText(this, "onCompleted!", Toast.LENGTH_SHORT).show();
+
+        
+
+        finish();
     }
 
     @Override
@@ -51,7 +62,7 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
 
     @Override
     public void onStepSelected(int newStepPosition) {
-        Toast.makeText(this, "onStepSelected! -> " + newStepPosition, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -76,5 +87,21 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
 
     public void setRegisterWarnig(Warning registerWarnig) {
         this.registerWarnig = registerWarnig;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (stepperLayout.getCurrentStepPosition() == 0) {
+            super.onBackPressed();
+        } else {
+            stepperLayout.onBackClicked();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG_,"Entro al activiti se puede guardar directo");
     }
 }

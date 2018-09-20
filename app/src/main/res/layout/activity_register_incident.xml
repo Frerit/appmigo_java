@@ -19,7 +19,7 @@
         app:ms_tabStepDividerWidth="138dp"
         app:ms_errorColor="@color/colorPrimary"
         tools:theme="@style/AppTheme"
-        app:ms_bottomNavigationBackground="?attr/colorAccent"
+        app:ms_bottomNavigationBackground="?attr/colorPrimary"
         tools:ignore="MissingConstraints">
 
     </com.stepstone.stepper.StepperLayout>

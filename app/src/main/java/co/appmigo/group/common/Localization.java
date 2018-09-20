@@ -1,10 +1,13 @@
 package co.appmigo.group.common;
 
+import android.location.Location;
+
 public class Localization {
 
     private String name;
     private double longitude;
     private double latitude;
+    private Location completeLocation;
 
 
     // (latitude, longitude) specified in degrees
@@ -12,6 +15,11 @@ public class Localization {
         this.name = name;
         this.latitude  = latitude;
         this.longitude = longitude;
+    }
+
+    public Localization(String name, Location location) {
+        this.name = name;
+        this.completeLocation = location;
     }
 
     public double getLongitude() {

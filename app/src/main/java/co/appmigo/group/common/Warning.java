@@ -11,6 +11,7 @@ public class Warning {
     private Localization localization;
     private Date dateIncident;
     private Date dateUpdate;
+    private String desciption;
 
     public Warning() {
     }
@@ -77,5 +78,13 @@ public class Warning {
 
     public void setDateUpdate(Date dateUpdate) {
         this.dateUpdate = dateUpdate;
+    }
+
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
     }
 }

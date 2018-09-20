@@ -123,7 +123,6 @@ public class LoginActivity extends AppCompatActivity {
                     updateUI(user);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("user",user.getUid());
-
                     LoginActivity.this.startActivity(intent);
 
                 } else {

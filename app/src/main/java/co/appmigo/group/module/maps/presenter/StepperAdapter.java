@@ -15,6 +15,8 @@ import co.appmigo.group.R;
 import co.appmigo.group.module.maps.fragment.IncidentSlider1Fragment;
 import co.appmigo.group.module.maps.fragment.IncidentSlider2Fragment;
 import co.appmigo.group.module.maps.fragment.IncidentSlider3Fragment;
+import co.appmigo.group.module.maps.fragment.IncidentSlider4Fragment;
+import co.appmigo.group.module.maps.fragment.IncidentSlider5Fragment;
 
 public class StepperAdapter extends AbstractFragmentStepAdapter  {
 
@@ -43,13 +45,23 @@ public class StepperAdapter extends AbstractFragmentStepAdapter  {
                 Bundle b3 = new Bundle();
                 step.setArguments(b3);
                 break;
+           case 3:
+                step = new IncidentSlider4Fragment();
+                Bundle b4 = new Bundle();
+                step.setArguments(b4);
+                break;
+            case 4:
+                step = new IncidentSlider5Fragment();
+                Bundle b5 = new Bundle();
+                step.setArguments(b5);
+                break;
         }
         return (Step) step;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 5;
     }
 
     @NonNull
@@ -81,7 +93,20 @@ public class StepperAdapter extends AbstractFragmentStepAdapter  {
             case 2:
                 return builder
                         .setTitle("Tab 3")
+                        .setEndButtonLabel("Continuar")
+                        .setBackButtonLabel("Regresar")
+                        .create();
+            case 3:
+                return builder
+                        .setTitle("Tab 4")
+                        .setEndButtonLabel("Continuar")
+                        .setBackButtonLabel("Regresar")
+                        .create();
+            case 4:
+                return builder
+                        .setTitle("Tab 5")
                         .setEndButtonLabel("Finalizar")
+                        .setBackButtonLabel("Regresar")
                         .create();
         }
         return null;

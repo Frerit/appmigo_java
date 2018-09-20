@@ -21,10 +21,13 @@ import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
 import co.appmigo.group.R;
+import co.appmigo.group.common.Constants;
 import co.appmigo.group.module.maps.activity.RegisterIncidentActivity;
 import co.appmigo.group.module.maps.model.OnProcesdListener;
 
 import static co.appmigo.group.common.Constants.TAG_;
+import static co.appmigo.group.common.Constants.TYPE_PRECAUTION;
+import static co.appmigo.group.common.Constants.TYPE_PREVENTION;
 
 
 public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
@@ -72,6 +75,7 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
                         public void run() {
                             selectionAlert = true;
                             onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setType(TYPE_PRECAUTION);
                         }
                     }, 1000L);
                 }
@@ -97,6 +101,7 @@ public class IncidentSlider1Fragment extends Fragment implements BlockingStep {
                         public void run() {
                             selectionAlert = true;
                             onProcesdListener.onProceed();
+                            onProcesdListener.getRegisterWarnig().setType(TYPE_PREVENTION);
                         }
                     }, 1000L);
                 }
