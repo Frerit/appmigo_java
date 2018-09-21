@@ -7,7 +7,7 @@ public class Localization {
     private String name;
     private double longitude;
     private double latitude;
-    private Location completeLocation;
+    public Location completeLocation;
 
 
     // (latitude, longitude) specified in degrees

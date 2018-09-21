@@ -105,7 +105,11 @@ public class IncidentSlider3Fragment extends Fragment implements BlockingStep {
                     public void run() {
                         selectionAlert = true;
                         onProcesdListener.onProceed();
-                        onProcesdListener.getRegisterWarnig().setLocalization(new Localization("LocaleIncident", currenLocation));
+                        if (currenLocation == null) {
+                            getCurrentLocation();
+                            onProcesdListener.getRegisterWarnig().setLocalization(currenLocation);
+                        } else
+                            onProcesdListener.getRegisterWarnig().setLocalization(currenLocation);
                     }
                 }, 400L);
             }
@@ -162,7 +166,8 @@ public class IncidentSlider3Fragment extends Fragment implements BlockingStep {
     }
 
     public void setLocation(Location location) {
-        currenLocation = location;
+       this.currenLocation = location;
+       Log.e(TAG_, location.toString());
     }
 
     private LocationListener mLocationListener = new LocationListener() {

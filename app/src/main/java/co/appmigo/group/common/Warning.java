@@ -1,6 +1,15 @@
 package co.appmigo.group.common;
 
+import android.location.Location;
+
+import com.google.common.base.Objects;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Warning {
     private String type;
@@ -8,13 +17,24 @@ public class Warning {
     private String category;
     private String level ;
     private User usertoregister;
-    private Localization localization;
+    private Location localization;
     private Date dateIncident;
     private Date dateUpdate;
     private String desciption;
 
     public Warning() {
     }
+
+    public Warning(DocumentSnapshot data) {
+
+        this.type = data.getString("type");
+        this.name = data.getString("name");
+        this.category = data.getString("category");
+        this.level = data.getString("level");
+
+    }
+
+
 
     public String getType() {
         return type;
@@ -56,11 +76,11 @@ public class Warning {
         this.usertoregister = usertoregister;
     }
 
-    public Localization getLocalization() {
+    public Location getLocalization() {
         return localization;
     }
 
-    public void setLocalization(Localization localization) {
+    public void setLocalization(Location localization) {
         this.localization = localization;
     }
 

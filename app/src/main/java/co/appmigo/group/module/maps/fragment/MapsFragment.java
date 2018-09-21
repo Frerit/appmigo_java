@@ -1,6 +1,8 @@
 package co.appmigo.group.module.maps.fragment;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,22 +25,26 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import co.appmigo.group.R;
+import co.appmigo.group.common.Constants;
 import co.appmigo.group.common.Localization;
+import co.appmigo.group.common.Warning;
 import co.appmigo.group.module.MainActivity;
 import co.appmigo.group.module.maps.activity.RegisterIncidentActivity;
 
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -53,8 +59,22 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+
+import org.imperiumlabs.geofirestore.GeoFirestore;
+import org.imperiumlabs.geofirestore.GeoQuery;
+import org.imperiumlabs.geofirestore.GeoQueryDataEventListener;
 
 import java.util.List;
+
+import static co.appmigo.group.common.Constants.TAG_;
 
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
@@ -77,12 +97,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     private RadioButton rad1, rad2, rad3;
     private RadioGroup radiogroup;
     private Button btnIncident;
+    private ImageView closemodalMap;
+    private CardView mapContentFragment;
+
+
+    CollectionReference geoFirestoreRef = FirebaseFirestore.getInstance().collection("incident");
+    GeoFirestore geoFirestore = new GeoFirestore(geoFirestoreRef);
 
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
 
-
     public MapsFragment() { }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,12 +123,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
+        animateModal();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
+
         initViews(view);
         initListener(view);
         return view;
@@ -116,6 +143,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         rad2 = view.findViewById(R.id.radioButton2);
         rad3 = view.findViewById(R.id.radioButton3);
         btnIncident = view.findViewById(R.id.btnpublicateIncident);
+        mapContentFragment = view.findViewById(R.id.mapContentFragment);
+        closemodalMap = view.findViewById(R.id.closemodalMap);
+
+        colorStroke = Color.argb( 80,210,180,222 );
+        colorFill = Color.argb( 100,232,218,239 );
     }
 
     public void animateElement(Object anima, float posiiton) {
@@ -126,6 +158,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void initListener(View view) {
+        mapContentFragment.setVisibility(View.GONE);
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -156,10 +189,43 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
               startActivity(intent);
             }
         });
+
+        closemodalMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeModal();
+            }
+        });
     }
 
 
+    private void animateModal() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mapContentFragment.setAlpha(0f);
+                mapContentFragment.setVisibility(View.VISIBLE);
 
+                mapContentFragment.animate()
+                        .alpha(1f)
+                        .setDuration(100L)
+                        .setListener(null);
+
+            }
+        },2000L);
+    }
+    private void closeModal() {
+        mapContentFragment.animate()
+                .alpha(0f)
+                .scaleY(1f)
+                .setDuration(100L)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mapContentFragment.setVisibility(View.GONE);
+                    }
+                });
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -205,7 +271,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         Location location = locationManager.getLastKnownLocation( provider );
         updateWithNewLocation(location);
 
-        locationManager.requestLocationUpdates(provider, 15000, 0,
+        locationManager.requestLocationUpdates(provider, 5000, 0,
                 locationListener);
     }
 
@@ -253,14 +319,23 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera( CameraUpdateFactory.newLatLngZoom( position, 17) );
         mMap.getUiSettings().setCompassEnabled( true );
 
+        showMyEntorno(position);
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.mMap = googleMap;
         setUpMap();
-        colorStroke = Color.argb( 80,210,180,222 );
-        colorFill = Color.argb( 100,232,218,239 );
+
+
+    }
+    public Circle addCircle(String post) {
+
+        switch (post) {
+            case Constants.TYPE_PREVENTION : colorStroke = Color.argb( 87,255,68,68 );  break;
+            case Constants.TYPE_PRECAUTION :  colorStroke = Color.argb( 63,116,133,227 );   break;
+        }
 
         circle = mMap.addCircle( new CircleOptions()
                 .center( new LatLng( 6.2496173,-75.5695481 ) )
@@ -270,29 +345,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                 .fillColor( colorFill )
                 .clickable( true ) );
 
-        iconBit = getBitmapFromVectorDrawable( getContext(),drawerIcon );
+        iconBit = getBitmapFromVectorDrawable( getContext(),post == Constants.TYPE_PREVENTION ? R.drawable.ic_advertencia : R.drawable.ic_warning);
         mMap.addMarker( new MarkerOptions()
                 .icon(BitmapDescriptorFactory.fromBitmap( iconBit ))
                 .position( new LatLng(  6.2496173,-75.5695481 ) ).title( "Incident" ) );
 
-//        Cargara los datos dependiendo de la posicion donde se encuentre
-
-
-  //      Cargar las alertas sercanas en un rango mas grande
-
-    }
-    public Circle addCircle(String post) {
-
-        switch (post) {
-            case "Incident": colorStroke = Color.argb( 87,255,68,68 );  break;
-            case "Alert":  colorStroke = Color.argb( 63,116,133,227 );   break;
-        }
         return circle;
 
     }
 
     public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
-        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_add_location_24dp);
+        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             drawable = (DrawableCompat.wrap(drawable)).mutate();
         }
@@ -304,6 +367,49 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+
+
+    private void showMyEntorno(LatLng position) {
+        GeoQuery appmigoShow = geoFirestore.queryAtLocation(new GeoPoint(position.latitude,position.longitude),0.6);
+        appmigoShow.addGeoQueryDataEventListener(new GeoQueryDataEventListener() {
+            @Override
+            public void onDocumentEntered(DocumentSnapshot documentSnapshot, GeoPoint location) {
+                Log.e(TAG_, String.format("Document %s entered the search area at [%f,%f]", documentSnapshot, location.getLatitude(), location.getLongitude()));
+                DocumentReference dorRef = geoFirestoreRef.document(documentSnapshot.getId());
+
+                if (dorRef != null) {
+                    Warning warning = new Warning(documentSnapshot);
+                    Log.e(TAG_,warning.getType());
+                }
+            }
+
+            @Override
+            public void onDocumentExited(DocumentSnapshot documentSnapshot) {
+                Log.e(TAG_, String.format("Document %s is no longer in the search area", documentSnapshot));
+            }
+
+            @Override
+            public void onDocumentMoved(DocumentSnapshot documentSnapshot, GeoPoint location) {
+                Log.e(TAG_, String.format("Document %s moved within the search area to [%f,%f]", documentSnapshot, location.getLatitude(), location.getLongitude()));
+            }
+
+            @Override
+            public void onDocumentChanged(DocumentSnapshot documentSnapshot, GeoPoint geoPoint) {
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+                Log.e(TAG_, "All initial data has been loaded and events have been fired!");
+
+            }
+
+            @Override
+            public void onGeoQueryError(Exception e) {
+                Log.e(TAG_, "There was an error with this query: " + e.getLocalizedMessage());
+            }
+        });
     }
 
     private void showAlert() {
