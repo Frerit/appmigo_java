@@ -107,9 +107,9 @@ public class IncidentSlider3Fragment extends Fragment implements BlockingStep {
                         onProcesdListener.onProceed();
                         if (currenLocation == null) {
                             getCurrentLocation();
-                            onProcesdListener.getRegisterWarnig().setLocalization(currenLocation);
+                            onProcesdListener.getRegisterWarnig().setLocationComplete(currenLocation);
                         } else
-                            onProcesdListener.getRegisterWarnig().setLocalization(currenLocation);
+                            onProcesdListener.getRegisterWarnig().setLocationComplete(currenLocation);
                     }
                 }, 400L);
             }
@@ -125,7 +125,6 @@ public class IncidentSlider3Fragment extends Fragment implements BlockingStep {
                 map.setMyLocationEnabled(false);
                 LatLng locale = new LatLng(currenLocation.getLatitude(), currenLocation.getLongitude());
                 map.addMarker(new MarkerOptions().position(locale));
-
 
                 CameraPosition cameraPosition = new CameraPosition.Builder()
                         .target(locale)

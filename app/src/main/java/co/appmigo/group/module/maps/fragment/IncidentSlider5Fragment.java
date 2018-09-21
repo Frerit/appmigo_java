@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
@@ -16,8 +17,10 @@ import com.varunest.sparkbutton.SparkButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import co.appmigo.group.R;
+import co.appmigo.group.common.Util;
 import co.appmigo.group.module.maps.model.OnProcesdListener;
 
 import static co.appmigo.group.common.Constants.TAG_;
@@ -25,6 +28,7 @@ import static co.appmigo.group.common.Constants.TAG_;
 public class IncidentSlider5Fragment extends Fragment implements BlockingStep {
 
     private SparkButton finisImage;
+    private LinearLayout mensajeNotNectwork;
 
     public IncidentSlider5Fragment() {
         // Required empty public constructor
@@ -50,10 +54,17 @@ public class IncidentSlider5Fragment extends Fragment implements BlockingStep {
 
     private void initView(View view) {
         finisImage = view.findViewById(R.id.finishIncident);
+        mensajeNotNectwork = view.findViewById(R.id.mensajeNotNectwork);
     }
 
     private void initListener() {
         finisImage.playAnimation();
+        if (!Util.validateNetWork(getActivity())) {
+            mensajeNotNectwork.setVisibility(View.VISIBLE);
+        } else {
+            mensajeNotNectwork.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

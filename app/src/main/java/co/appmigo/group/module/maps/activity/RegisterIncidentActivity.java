@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import co.appmigo.group.LoginActivity;
 import co.appmigo.group.R;
+import co.appmigo.group.common.Constants;
 import co.appmigo.group.common.User;
 import co.appmigo.group.common.Util;
 import co.appmigo.group.common.Warning;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,6 +34,8 @@ import com.stepstone.stepper.VerificationError;
 
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
+
+import java.util.Date;
 
 import static co.appmigo.group.common.Constants.TAG_;
 
@@ -65,29 +67,22 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
         stepperLayout.isTabNavigationEnabled();
         stepperLayout.setTabNavigationEnabled(true);
         stepperLayout.setListener(this);
-
     }
 
     @Override
     public void onCompleted(View completeButton) {
-        if (!Util.validateNetWork(this)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Parece que no tienes Acceso a internet," + "\n" +
-                    "Pero lo guardaremos e intentaremos enviarlo luego");
-            builder.setTitle("Info");
-            AlertDialog dialog = builder.create();
-        } else {
-            finish();
-        }
-
-        registerWarnig.setUsertoregister(new User(FirebaseAuth.getInstance().getCurrentUser()));
+        registerWarnig.setUsertoregister(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        registerWarnig.setLevel(Constants.LEVEL_LEVE);
+        registerWarnig.setName("first-incident");
+        registerWarnig.setDateIncident(new Date());
 
         db.collection("incident")
                 .add(registerWarnig)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        geoFirestore.setLocation(documentReference.getId(), new GeoPoint(registerWarnig.getLocalization().getLatitude(),registerWarnig.getLocalization().getLongitude()));
+                        geoFirestore.setLocation(documentReference.getId(), new GeoPoint(registerWarnig.getLatitude(),registerWarnig.getLongitude()));
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -96,6 +91,7 @@ public class RegisterIncidentActivity extends AppCompatActivity implements Stepp
                         Log.e(TAG_,"Error", e);
                     }
                 });
+        finish();
     }
 
     @Override
