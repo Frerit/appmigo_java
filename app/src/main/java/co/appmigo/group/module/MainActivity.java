@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     createExplorerFragment();
                     return true;
+                case R.id.navigation_public:
+                    createDasboardFragment();
+                    return true;
                 case R.id.navigation_notifications:
                     createnotificationFragment();
                     return true;
@@ -43,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    private void createDasboardFragment() {
+
+    }
 
     private void createnotificationFragment() {
         NotificationFragment notifrag = new NotificationFragment();
