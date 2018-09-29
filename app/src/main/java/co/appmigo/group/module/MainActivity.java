@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import co.appmigo.group.R;
+import co.appmigo.group.module.dashboard.fragment.DashboardFragment;
 import co.appmigo.group.module.explore.fragment.ExploreAlertFragment;
 import co.appmigo.group.module.maps.fragment.MapsFragment;
 import co.appmigo.group.module.notification.fragment.NotificationFragment;
@@ -48,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void createDasboardFragment() {
-
+        DashboardFragment dasFragment = new DashboardFragment();
+        FragmentManager changeDah = getSupportFragmentManager();
+        changeDah.beginTransaction().replace(R.id.contentLayout, dasFragment).commit();
     }
 
     private void createnotificationFragment() {
